@@ -15,7 +15,27 @@
         echo '<p>'. $gebtag . '<p>';
     ?>
     <p>Rechnen</p>
+    <?php
+        $a = 5;
+        $b = 4;
 
-
+        $c = $a - $b;
+        echo $a;
+    ?>
+    <?php
+        $a = 1.9475 * 13400;
+        echo $a;
+    ?>
+    <?php
+        $a = 1;
+        $A = -2;
+        $b = $a + $A;
+        echo $b;
+    ?>
+    <?php
+        $a = 1;
+        $A = -2;
+        echo $a + $A;
+    ?>
   </body>
 </html>
