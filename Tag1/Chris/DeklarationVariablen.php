@@ -31,7 +31,12 @@ Ausser Plus und Minus gibts natürlich noch andere Rechenzeichen:
 
 */
 
-$Vorname = "CHRISTOPHER";
+ersteUebung();
+
+
+function ersteUebung()
+{
+	$Vorname = "CHRISTOPHER";
 $NachName = "BUCHMANN";
 
 $Name = $Vorname.$NachName;
@@ -41,6 +46,7 @@ echo '<p>'.$Name.'</p>'; /* vollständiger name */
 
 $Name = $Vorname . " " . $NachName;
 echo '<p>'.$Name.'</p>'; /* vollständiger name */
-
+}
 ?>
+
 
