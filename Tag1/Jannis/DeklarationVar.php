@@ -9,16 +9,25 @@
 
   <?php
 
-    $name = 'Jannis';
-    $alter = 16;
-    $gebtag = '30.12.1999';
-    $plus = 1
+  $a = 5;
+  $b = 4;
 
-    echo '<p>Hallo ' . $name . ' - wie geht es dir?</p>';
-    echo '<p>' . $alter += $plus . '</p>';
-    echo '<p>' . $gebtag . '</p>';
+  $c = $a + $b;
+
+  echo $c;
 
 
+  ?>
+
+  <?php
+  $a = 1.9475 * 13400;
+  echo $a
+  ?>
+
+  <?php
+  $a = 1;
+  $A = -2
+  echo $a
   ?>
 
 </body>
