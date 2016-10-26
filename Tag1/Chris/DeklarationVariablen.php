@@ -14,4 +14,24 @@ $a = 1;
 $A = -2;
 $b = $a + $A;     /* $b = 1 + (-2) */
 echo '<p> Ich bin ein '.$b. '</p>';
+
+$a = 1;
+$A = -2;
+    /* $b = 1 + (-2) */
+echo '<p>' .$a + $A. '</p>';
+
+/*
+Der Code wird nämlich immer von rechts nach links abgearbeitet, somit erst die Summe gebildet, danach ausgegeben.
+
+Ausser Plus und Minus gibts natürlich noch andere Rechenzeichen:
+
+-dividieren "/"
+-multiplizieren "*"
+-der Modulo "%"
+
+*/
+
+
+
 ?>
+
