@@ -24,14 +24,19 @@
      </form>
       <p class ="standardtext">
         <?php
-          $test = array("Eins","Zwei","Drei","Vier"); /* Deklaration eines Arrays */
-          natsort($test); /* Natürliche Sortierung, alphabetisch */
-          sort($test);  /* Sortiert die Werte, Index Zuordnung bleibt nicht bei den Werten*/
-          arsort($test);  /* Gegenteil von natsort, wird umgekehrt ausgegeben */
-          asort($test);  /* Sortiert die Werte, Array-Index bleibt bei den Werten */
-          print_r($test); /* Ausgabe aller Array-Einträge (mit Index) */
-          echo "</br>Anzahl Array-Elemente ".count($test)."</br>";
-          echo "Text 'Vier' gefunden in Index: ".array_search("Vier",$test);
+        $text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+              sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+              aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+              duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+              sanctus est Lorem ipsum dolor sit amet.";
+        echo substr($text,-6,6); /* gibt letzte 6 Zeichen aus */
+        echo substr($text,0,-10);
+        $x=0;
+        while($x < strlen($text))
+        {
+          echo substr($text,$x,5). "</br>";
+          $x+=5;
+        }
         ?>
       </p>
     </div>

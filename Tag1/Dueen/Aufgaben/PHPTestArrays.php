@@ -24,14 +24,24 @@
      </form>
       <p class ="standardtext">
         <?php
-          $test = array("Eins","Zwei","Drei","Vier"); /* Deklaration eines Arrays */
-          natsort($test); /* Natürliche Sortierung, alphabetisch */
-          sort($test);  /* Sortiert die Werte, Index Zuordnung bleibt nicht bei den Werten*/
-          arsort($test);  /* Gegenteil von natsort, wird umgekehrt ausgegeben */
-          asort($test);  /* Sortiert die Werte, Array-Index bleibt bei den Werten */
-          print_r($test); /* Ausgabe aller Array-Einträge (mit Index) */
-          echo "</br>Anzahl Array-Elemente ".count($test)."</br>";
-          echo "Text 'Vier' gefunden in Index: ".array_search("Vier",$test);
+          $Variation = array("Dueen","Duin","Dwenn","Dwaine"); /* Deklaration eines Arrays */
+          print_r($Variation); /* Ausgabe aller Array-Einträge (mit Index) */
+          echo $Variation[2]."</br>"; /* Ausgabe eines einzelnen Array-Eintrags */
+          for ($x=0; $x < count($Variation); $x++) /* Ausgabe mit For-Schleife */
+          {
+            echo "Eintrag mit Index " . $x. ": ".$Variation[$x]."</br>";
+          }
+          foreach ($Variation as $name) /* Wie For-Schleife, jedoch werden sie in eine Variable kopiert */
+          {
+            echo $name."</br>";
+          }                             /* Veränderungen an der Variable würden nichts am Array ändern */
+          $test["Gruss"] = "hallo";
+          $test["Verabschiedung"] = "tschau";
+          $test["Verabschiedung2"] = "Ade";
+          foreach ($test as $key => $value)
+          {
+            echo "Der Schlüssel ".$key." hat den Wert ".$value."</br>";
+          }
         ?>
       </p>
     </div>

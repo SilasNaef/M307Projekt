@@ -9,11 +9,11 @@
     <div id="container">
       <div id="nav">
         <nav>
-          <a class="button" href="index.html">Home</a> <br> <br>
-          <a class="button" href="story.html">Story</a> <br> <br>
+          <a class="button" href="index.php">Home</a> <br> <br>
+          <a class="button" href="story.php">Story</a> <br> <br>
           <a class="button" href="#">jweg</a> <br> <br>
-          <a class="button" href="#">wegwg</a> <br> <br>
-          <a class="button" href="contact.html">Kontakt</a> <br> <br>
+          <a class="button" href="PHPTest.php">PHPTest</a> <br> <br>
+          <a class="button" href="contact.php">Kontakt</a> <br> <br>
         </nav>
       </div>
       <div id="text">

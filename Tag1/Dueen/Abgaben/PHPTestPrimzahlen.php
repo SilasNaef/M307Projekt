@@ -18,20 +18,25 @@
     </div>
     <div id="text">
       <h1>Mein PHP Test</h1>
-      <form method="post" action="/script.php">
-          Passwort: <input type="text" name="Passwort"><br />
-          <input type="submit" name="absenden" value="Script starten">
-     </form>
       <p class ="standardtext">
         <?php
-          $test = array("Eins","Zwei","Drei","Vier"); /* Deklaration eines Arrays */
-          natsort($test); /* Natürliche Sortierung, alphabetisch */
-          sort($test);  /* Sortiert die Werte, Index Zuordnung bleibt nicht bei den Werten*/
-          arsort($test);  /* Gegenteil von natsort, wird umgekehrt ausgegeben */
-          asort($test);  /* Sortiert die Werte, Array-Index bleibt bei den Werten */
-          print_r($test); /* Ausgabe aller Array-Einträge (mit Index) */
-          echo "</br>Anzahl Array-Elemente ".count($test)."</br>";
-          echo "Text 'Vier' gefunden in Index: ".array_search("Vier",$test);
+        $x;
+        $y;
+        $z;
+        for ($x=0; $x <= 1000 ; $x++) {
+          $y=$x;
+          $z=0;
+          for (; $y >= 1 ; $y--) {
+            if ($x%$y==0)
+            {
+              $z++;
+            }
+          }
+          if ($z==2)
+          {
+            echo $x." ist eine Primzahl</br>";
+          }
+        }
         ?>
       </p>
     </div>
