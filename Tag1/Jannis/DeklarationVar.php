@@ -21,13 +21,20 @@
 
   <?php
   $a = 1.9475 * 13400;
-  echo $a
+  echo $a;
   ?>
 
   <?php
   $a = 1;
-  $A = -2
-  echo $a
+  $A = -2;
+  $b = $a + $A;
+  echo $b;
+  ?>
+
+  <?php
+  $a = 1;
+  $A = -2;
+  echo $a + $A;
   ?>
 
 </body>
