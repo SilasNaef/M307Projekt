@@ -1,0 +1,72 @@
+html{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+body {
+  background-color: #000000;            /* Schwarz */
+  background-repeat: no-repeat;         /* Wiederholen des BG z.B 1 Bild */
+  background-attachment: fixed;
+  background-position: right,top;       /* Position des BG */
+} /* Formatierungen für den HTML Teil body */
+h1 {
+  font-size: 25px;
+  font-family:"arial";
+  color: #FFFFFF; /* Weiss */
+} /* Formatierungen für die Überschrift h1 */
+img {
+  max-width: 100%; height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.standardtext{
+  font-family: sans-serif;
+  font-size: 15px;
+  color: white;
+  text-align: left;
+
+}
+a:hover, a:focus{
+  font-size: 25px;
+}
+a:active{
+
+}
+.button {
+    font-family: "Celtic";
+    font-size: 18px;
+    color: black;
+    background-color: grey;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    padding: 15px 45px;
+    width: 100px;
+    height: 20px;
+    display: inline-block;
+} /* Regel für Buttons */
+#footer{
+  font-family: "arial";
+  font-size: 14px;
+  color: white;
+  padding-left: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #FFFFFF;
+}
+#container{
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+}
+#nav{
+  width: 200px;
+}
+#text{
+  -webkit-flex: 1;
+  flex: 1;
+  padding-left: 15%;
+  padding-right: 20%;
+}
+@font-face { font-family: 'Celtic';                       /* Namensgebung des Fonts */
+             src: url('font/CELT.TTF') format('woff'); }  /* Einbinden des Fonts */
