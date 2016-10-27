@@ -15,7 +15,9 @@
         <br>
         <p>Passwort</p><input type="password" name="pw1" value="<?= @$_POST['pw1']?>"class="form-control" />
         <br>
+        <input type="hidden" name="Logout" value="1">
         <button type="submit" value="absenden" class="form-control btn btn-default">Absenden</button>
+
       </div>
     </div>
     <div class="col-md-12">
@@ -38,7 +40,6 @@
       }
       else {
       }
-
       ?>
     </div>
   </section>
