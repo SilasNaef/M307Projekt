@@ -20,6 +20,7 @@
           <br>
           <input type="password" name="passwortbe"  placeholder="Passwort bestätigen" class="form-control"/>
           <br>
+          <input type="hidden" name="logout"  value="1"/>
           <button type="submit" value="absenden" class="form-control btn
           btn-default">Absenden</button>
         </form>
