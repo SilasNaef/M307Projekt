@@ -27,7 +27,6 @@ mysql_select_db($MYSQL_DB, $conn);     /* verbindet zu der gewählten Datenbank 
     </div>
     <div id="text">
       <h1>Mein PHP Test</h1>
-
       <p class ="standardtext">
         <form method="post" action="/script.php">
             Vorname:   <input type="text" name="VName"><br />

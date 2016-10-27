@@ -26,11 +26,6 @@
           würde sich das bitte schön antun?", doch genau diese Mischung aus Schwierigkeit, trübender Stimmung und epischen Gebieten
           ist das, was Dark Souls ausmacht und zu einem Spiele-Hit verholfen hat. Gamer sehnen sich nach schwierigen, aber
           fairen Spielen und Dark Souls trifft ziemlich gut auf das zu. Hart, aber fair.
-          <?php
-            $name = 'Dueen';
-            $gebtag = '18.März';
-            echo 'Hallo ' .$name. ' du hast am  ' .$gebtag. ' wie geht es dir?';
-          ?>
         </p>
       </div>
     </div>
