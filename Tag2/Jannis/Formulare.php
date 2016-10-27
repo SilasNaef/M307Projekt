@@ -29,6 +29,11 @@
     <div class="col-md-12">
       <!--PHP Teil -->
       <?php
+      $MYSQL_HOST = "localhost";
+      $MYSQL_USER = "root";
+      $MYSQL_PW = "";
+      $MYSQL_DB = "Produkte";
+
       @$username = $_POST['vorname'];
       @$password = $_POST['passwort'];
       @$confirm  = $_POST['passwortbe'];
