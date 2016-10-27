@@ -7,7 +7,7 @@
   $MYSQL_PW = "";
   $MYSQL_DB = "dueendb";
 
-  $conn = mysqli_connect($MYSQL_HOST, $MYSQL_USER, $MYSQL_PW, $MYSQL_DB);
+  $conn = new mysqli($MYSQL_HOST, $MYSQL_USER, $MYSQL_PW, $MYSQL_DB);
   ?>
   <meta charset="utf-8">
   <!-- Latest compiled and minified CSS -->
@@ -23,13 +23,7 @@
   <div id="container">
     <div class="container">
       <h1>Mein Formular</h1>
-      <?php
-            $result=mysqli_query($conn, "SELECT * FROM user");
-            while($row=mysqli_fetch_assoc($result))
-            {
-              echo "id: ".$row["USER_ID"]." - Name: ".$row["Vorname"]." ".$row["Nachname"]. " - Alter: ".$row["Lebensjahre"]."</br>";
-            }
-       ?>
+
       <div class="col-md-12">
         <p class="standardtext">
           <?php
@@ -54,6 +48,7 @@
             }
             else
             {
+              echo "<h1> Login</h1>";
               echo "<form action='session.php' method='post'>";
               echo "<input type='text' name='vorname' placeholder='Vorname' />";
               echo "</br>";
@@ -61,18 +56,50 @@
               echo "</br>";
               echo "<input type='submit' value='absenden'/>";
               echo "</form>";
-              exit;
             }
            ?>
+           <h2>Datensatz anlegen</h2>
+          <form action='session.php' method='post' enctype="multipart/form-data">
+          <input type='text' name='vorname1' placeholder='Vorname' />
+          </br>
+          <input type='text' name='nachname' placeholder='Nachname' />
+          </br>
+          <input type='text' name='alter' placeholder='Alter' />
+          </br>
+          <input type='password' name='pw1' placeholder='Passwort' />
+          </br>
+          <input id="input-1" name="image" type="file" class="file">
+          </br>
+          <input type='submit' value='Daten speichern'/>
+        </form>
+        <?php
+              $vname=@$_POST["vorname1"];
+              $nname=@$_POST["nachname"];
+              $alter=@$_POST["alter"];
+              $pw=@$_POST["pw1"];
+              if(@isset($_FILES['image']))
+              {
+                copy($_FILES["image"]["tmp_name"], "./images/image_".$vname.".png");
+              }
+              $conn->query("INSERT INTO user (Vorname, Nachname, Lebensjahre, Passwort, Bild) VALUES ('".$vname."','".$nname."',$alter,'".$pw."','image_".$vname."_".$alter.".png')");
+              print_r($conn);
+              $result = $conn->query("SELECT * FROM user"); /* Abfrage Speichern in Variable */
+              echo "<h1> Aktuelle Datensätze </h1>";
+              while($row=$result->fetch_assoc()) /* Ausgabe der Datenbank */
+              {
+                echo "id: ".$row["USER_ID"]." - Name: ".$row["Vorname"]." ".$row["Nachname"]. " - Alter: ".$row["Lebensjahre"]."</br>";
+              }
+         ?>
   </p>
 </div>
 </div>
 <div class="col-md-12">
-  <?php if (empty ($_POST["vorname"])==True) /* Überprüfung ob Variable leer ist */
+  <?php
+        if (empty ($vname)==True) /* Überprüfung ob Variable leer ist */
           echo "Bitte geben Sie Ihren Vornamen ein.";
         else
         {
-          echo "Eingetragener Vorname: ". @$_POST["vorname"]."</br>";
+          echo "Eingetragener Vorname: ". $vname."</br>";
         }
   ?>
 </div>
