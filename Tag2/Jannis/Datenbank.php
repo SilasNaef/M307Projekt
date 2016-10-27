@@ -16,7 +16,7 @@
         <form action="Datenbank.php" method="post">
           <input type="text" name="vorname" value="<?=@$_POST['vorname']?>" placeholder="Benutzername" class="form-control"/>
           <br>
-          <input type="file" name="vorname">
+          <input type="file" name="image">
           <br>
           <button type="submit" value="absenden" class="form-control btn
           btn-default">Absenden</button>
