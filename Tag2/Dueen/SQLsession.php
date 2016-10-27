@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?php
-  $MYSQL_HOST = "localhost";
-  $MYSQL_USER = "root";
-  $MYSQL_PW = "";
-  $MYSQL_DB = "dueendb";
-
-  $conn = mysqli_connect($MYSQL_HOST, $MYSQL_USER, $MYSQL_PW, $MYSQL_DB);
-  ?>
   <meta charset="utf-8">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -23,13 +15,6 @@
   <div id="container">
     <div class="container">
       <h1>Mein Formular</h1>
-      <?php
-            $result=mysqli_query($conn, "SELECT * FROM user");
-            while($row=mysqli_fetch_assoc($result))
-            {
-              echo "id: ".$row["USER_ID"]." - Name: ".$row["Vorname"]." ".$row["Nachname"]. " - Alter: ".$row["Lebensjahre"]."</br>";
-            }
-       ?>
       <div class="col-md-12">
         <p class="standardtext">
           <?php
