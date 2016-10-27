@@ -29,6 +29,12 @@
         <?php
           //$InsertQuery = mysqli_query($db,"INSERT INTO testtable('id','Name','Text','Zahl') VALUES (2,'Jannis','Thymnios',76)");
           $db = mysqli_connect("localhost","root","","testdb");
+          $createdb = new mysqli("localhost","root","");
+
+          $CreateDataBase = mysqli_query($createdb,"CREATE DATABASE IF NOT EXISTS meineNeueDB");
+          $UseCreateDB = mysqli_connect("localhost","root","","meineNeueDB");
+          $CreateDataBaseTable = mysqli_query($UseCreateDB, "CREATE TABLE IF NOT EXISTS myManualTable( id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(30) NOT NULL, lastName VARCHAR(30) NOT NULL, email VARCHAR(50))");
+
           @$id = $_POST['id'];
           @$name = $_POST['name'];
           @$text = $_POST['text'];
@@ -37,13 +43,13 @@
             echo "Bitte alle Werte eintippen";
           }
           else {
-
             $FormularQuery = mysqli_query($db,"  INSERT INTO `testtable` (`id`, `Name`, `Text`, `Zahl`) VALUES ('$id','$name','$text','$zahl')");
             $SelectQuery = mysqli_query($db,"SELECT * FROM testtable");
             while ($row = mysqli_fetch_assoc($SelectQuery)) {
               echo $row['Name'] . "<br/>";
             }
           }
+          mysqli_close($createdb);
           mysqli_close($db);
         ?>
       </div>
