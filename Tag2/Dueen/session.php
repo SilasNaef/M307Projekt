@@ -32,9 +32,10 @@
           if(@$_POST['login'])
           {
             $result = $conn->query("SELECT * FROM user WHERE Vorname = '.@$_POST['vorname']' AND Passwort = '.@$_POST['pw']");
-            if (@$_POST["vorname"]=="dueen" AND @$_POST["pw"] =="dueen")
+            if($result->num_rows > 0) /* Ausgabe der Datenbank */
             {
-              $_SESSION["vorname"] = $_POST["vorname"];
+              $row=$result->fetch_object()
+              $_SESSION["vorname"] = $row->Vorname;
               $_SESSION["login"]=true;
             }
             else
