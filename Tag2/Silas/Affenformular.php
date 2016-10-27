@@ -13,8 +13,7 @@
         <form action="Affenformular.php" method="post">
           <input type="text" name="vorname" value="<?=@$_POST['vorname']?>" class="form-control" />
           <br>
-          <p>Passwort 1</p><input type="password
-          " name="pw1" value="<?= @$_POST['pw1']?>"class="form-control" />
+          <p>Passwort 1</p><input type="password" name="pw1" value="<?= @$_POST['pw1']?>"class="form-control" />
           <br>
           <p>Passwort 2</p><input type="password" name="pw2" value="<?= @$_POST['pw2']?>"class="form-control" />
           <br>
