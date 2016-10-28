@@ -31,6 +31,15 @@
           <input type="checkbox"> Anmeldung speichern
           <br>
           <br>
+          <label>Sonstiges:</label>
+          <input type="time" name="Time" class="form-control"/>
+          <br>
+          <input type="date" name="Date" class="form-control"/>
+          <br>
+          <input type="month" name="Month" class="form-control"/>
+          <br>
+          <input type="week" name="Week" class="form-control"/>
+          <br>
 
           <label>Profibild auswählen:</label><input type="file" name="image">
           <br>
