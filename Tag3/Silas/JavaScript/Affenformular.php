@@ -15,7 +15,7 @@
     <div class="row">
       <h1>Mein Formular<i onclick='DropDown();'class="fa fa-caret-down" aria-hidden="true"></i></h1>
       <div class="col-md-12">
-        <p class="hidden" id="unhideMe">Dies ist ein Text der Jetzt angezeigt wird</p>
+        <p sid="unhideMe">Dies ist ein Text der Jetzt angezeigt wird</p>
         <form action="Affenformular.php" method="post" id="MeinFormular">
           <p onclick='getConfirmation("Parameter");'>UserName</p><input type="text" name="vorname" class="form-control testuser" />
           <br/>

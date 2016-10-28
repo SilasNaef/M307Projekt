@@ -30,11 +30,5 @@ function jQueryTest2() {
     $('.test').val("Neuer Wert");
 }
 function DropDown() {
-
-    if (document.getElementById("unhideMe").className = "") {
-        document.getElementById("unhideMe").className = "unHideMe"
-    }
-    else {
-        document.getElementById("unhideMe").className = "";
-    }
+  $('#unhideMe').toggle();
 }
