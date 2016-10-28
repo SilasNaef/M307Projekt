@@ -10,15 +10,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="Style.css" rel="stylesheet">
   <script src="script.js"></script>
-<body>
+<body class="HideMe">
   <section class="container">
     <div class="row">
-      <h1>Mein Formular</h1>
+      <h1>Mein Formular<i onclick='DropDown();'class="fa fa-caret-down" aria-hidden="true"></i></h1>
       <div class="col-md-12">
-        <form action="Affenformular.php" method="post">
-          <p onclick='getConfirmation("Parameter");'>UserName</p><input type="text" name="vorname" value="<?=@$_POST['vorname']?>" class="form-control" />
+        <p class="hidden" id="unhideMe">Dies ist ein Text der Jetzt angezeigt wird</p>
+        <form action="Affenformular.php" method="post" id="MeinFormular">
+          <p onclick='getConfirmation("Parameter");'>UserName</p><input type="text" name="vorname" class="form-control testuser" />
           <br/>
-          <p onclick='jQueryTest("String");'class="custom">Passwort</p><input type="password" name="pw1" value="<?= @$_POST['pw1']?>"class="form-control" />
+          <p onclick='jQueryTest("String");'class="custom">Passwort</p><input type="password" name="pw1" class="form-control testpw" />
+          <br/>
+          <p onclick='jQueryTest("String");'class="custom">TestFeld</p><input type="text" name="testfeld" class="form-control test" />
           <br/>
           <button type="submit" value="absenden" class="form-control btn btn-default"><i class="fa fa-diamond"></i>Absenden<i class="fa fa-diamond"></i></button>
           <br/>
