@@ -51,7 +51,7 @@ foreach($DVD as $Film)
 }
 
 
-$Color = array("white", "blue", "yellow", "green", "motherfucker");     /* ein leeres Array wird erstellt */
+$Color = array();     /* ein leeres Array wird erstellt */
 // dieser Schritt ist nicht unbedingt notwendig, aber verhinderte eventuelle Fehler
 echo "<br />";
 $Color[ ] = "white";
