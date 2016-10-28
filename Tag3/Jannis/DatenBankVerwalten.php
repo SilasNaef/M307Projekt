@@ -4,8 +4,15 @@
 <head>
   <title>Titel</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
 
+ <script src="delete.js"></script>
   </head>
 
   <body>
@@ -23,6 +30,7 @@
             <br>
             <button type="submit" value="absenden" class="form-control btn
             btn-default">Absenden</button>
+            <br>
             <br>
   <?php
 
@@ -57,23 +65,25 @@ email VARCHAR(50)
     //if (@$_POST['vorname'] != null) {
       echo "Eintrag von Kunden: ". $_POST['vorname'] . " wurde gespeichert";
       $sql =  mysqli_query($ConnDB, "INSERT INTO MyGuests(firstname, lastname, email) VALUES('$vorname', '$nachname', '$email')");
-      $abfrage = mysqli_query($ConnDB, "SELECT * FROM MyGuests");
 
-
-      echo "<table class='table table-striped table-hover'>";
-      while($row = mysqli_fetch_assoc($abfrage)) {
-        echo "<tr>";
-          echo "<td>" . $row['id'] . "</td>";
-          echo "<td>" . $row['firstname'] . "</td>";
-          echo "<td>" . $row['lastname'] . "</td>";
-          echo "<td>" . $row['email'] . "</td>";
-          echo "<td class='text-right'><form method='get' action='delete.php?customer=" . $row["vorname"]
-            "'><button class='btn btn-danger' onclick='deleteCustomer(" . $row["id"].");'>Delete " . $row["vorname"] . "</button></form></td>";
-        echo "</tr>";
-
-      }
   }
 
+  $abfrage = mysqli_query($ConnDB, "SELECT * FROM MyGuests");
+
+
+  echo "<table class='table table-striped table-hover'>";
+  while($row = mysqli_fetch_assoc($abfrage)) {
+    echo "<tr id='" . $row['id'] . "'>";
+      echo "<td>" . $row['id'] . "</td>";
+      echo "<td>" . $row['firstname'] . "</td>";
+      echo "<td>" . $row['lastname'] . "</td>";
+      echo "<td>" . $row['email'] . "</td>";
+      echo "<td class='text-right'>
+      <button type='button' class='btn btn-danger' onclick='deleteCustomer(" . $row["id"].");'>
+      <i class='fa fa-trash-o' aria-hidden='true'></i></button></td>";
+    echo "</tr>";
+
+  }
 
 
   mysqli_close($ConnDB);
