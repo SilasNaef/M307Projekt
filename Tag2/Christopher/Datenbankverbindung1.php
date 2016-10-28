@@ -1,7 +1,7 @@
 <?php
 //include("Datenbankverbindung.php");
 
-$db = mysqli_connect("localhost", "root", "", "");
+$db = mysqli_connect("localhost", "root", "", "personendaten");
 
 if(!$db)
 {
