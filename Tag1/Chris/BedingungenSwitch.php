@@ -7,6 +7,7 @@
 
 $Ziel = "London";
 $Gleis = null;
+
 if(!is_null($Gleis))
 {
 $Gleis = $_POST["vname"];
