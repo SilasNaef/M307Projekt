@@ -54,22 +54,22 @@
           {
             echo "<h1> Login</h1>
             <form action='session.php' method='post'>
-            <input type='text' name='vorname' placeholder='Vorname' />
+            <input type='text' name='vorname' placeholder='Vorname' class='form-control'/>
             </br>
-            <input type='password' name='pw' placeholder='Passwort' />
+            <input type='password' name='pw' placeholder='Passwort' class='form-control'/>
             </br>
-            <input type='submit' name='login' value='Einloggen'/>
+            <input type='submit' name='login' value='Einloggen' class='form-control btn btn-primary'/>
             </form>";
             echo "<h2>Registrieren</h2>
             <form action='session.php' method='post' enctype='multipart/form-data'>
-            <input type='text' name='vorname1' placeholder='Vorname' />
+            <input type='text' name='vorname1' placeholder='Vorname' class='form-control'/>
             </br>
-            <input type='text' name='nachname' placeholder='Nachname' />
+            <input type='text' name='nachname' placeholder='Nachname' class='form-control'/>
             </br>
-            <input type='text' name='alter' placeholder='Alter' />
+            <input type='text' name='alter' placeholder='Alter' class='form-control'/>
             </br>
-            <input type='email' name='email' placeholder='Email'></br>
-            <input type='password' name='pw1' placeholder='Passwort' />
+            <input type='email' name='email' placeholder='Email'class='form-control'></br>
+            <input type='password' name='pw1' placeholder='Passwort' class='form-control'/>
             </br>
             <input type='radio' name='gender' value='male' checked> Mann<br>
             <input type='radio' name='gender' value='female'> Frau<br>
@@ -77,8 +77,9 @@
             <input type='checkbox' name='Newsfeed' value='NFy'> Ich abonniere den Newsletter<br>
             <input id='input-1' name='image' type='file' class='file'>
             </br>
-            <input type='submit' value='Registrieren'/>
-            <input type='reset'>
+            <input type='submit' value='Registrieren' class='form-control btn btn-primary'/>
+            </br>
+            <input type='reset' class='form-control btn btn-primary'>
             </form>";
           }
           ?>
@@ -99,7 +100,7 @@
           echo "<h1> Aktuelle Datensätze </h1>";
           while($row=$result->fetch_assoc()) /* Ausgabe der Datenbank */
           {
-            echo "ID: ".$row["USER_ID"]." - Name: ".$row["Vorname"]." ".$row["Nachname"]. " - Alter: ".$row["Lebensjahre"]."</br>";
+            echo "ID: ".$row["USER_ID"]." - Name: ".$row["Vorname"]." ".$row["Nachname"]. " - Alter: ".$row["Lebensjahre"]." - Email: ".$row['email']." - Geschlecht: ".$row['Geschlecht']."</br>";
           }
           ?>
         </p>
