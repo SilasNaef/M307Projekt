@@ -32,6 +32,7 @@
   integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
   crossorigin="anonymous"></script>
   <script src="script.js"></script>
+  <script src="https://use.fontawesome.com/c72bc1bfe3.js"></script>
 </head>
 <body>
   <div id="container">
