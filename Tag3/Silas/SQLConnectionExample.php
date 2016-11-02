@@ -50,7 +50,7 @@
           $SelectQuery = mysqli_query($db,"SELECT * FROM testtable");
           //----------------------------------------------------------------------------------------
           //WERTE ÜBERPRÜFEN
-          if (empty($id) == true && empty($name) && empty($text) && empty($zahl)) {
+          if (empty($id) == false && empty($name) && empty($text) && empty($zahl)) {
             echo "Bitte alle Werte eintippen";
           }
           else {
@@ -61,6 +61,7 @@
                 echo "<td>" . $row['Name'] . "</td>";
                 echo "<td>" . $row['Text'] . "</td>";
                 echo "<td>" . $row['Zahl'] . "</td>";
+
               echo "</tr>";
             }
             echo "</table>";
