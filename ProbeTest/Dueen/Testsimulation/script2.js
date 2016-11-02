@@ -13,7 +13,7 @@ function deleteTupel(schadenID)
     }
   })
 }
-function editTupel(schadenID,date, aname,schaden, loesung)
+function editTupel(schadenID)
 {
   $.ajax
   ({

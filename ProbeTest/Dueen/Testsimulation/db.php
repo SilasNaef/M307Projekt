@@ -59,7 +59,7 @@ crossorigin="anonymous"></script>
     echo "<th>".$row['Antragsteller']."</th>";
     echo "<th>".$row['Schaden']."</th>";
     echo "<th>".$row['Loesung']."</th>";
-    echo "<th><a href='test.php'<button class='form-control btn btn-primary' onclick='editTupel(".$row['SchadenID'].",".$row['Erfassungsdatum'].",".$row["Antragsteller"].",".$row['Schaden'].",".$row['Loesung'].")'><i class='fa fa-pencil'></i></th></a>";
+    echo "<th><a href='test.php?id=".$row['SchadenID']."'<button class='form-control btn btn-primary' onclick='editTupel(".$row['SchadenID'].")'><i class='fa fa-pencil'></i></th></a>";
     echo "<th><button class='form-control btn btn-danger' onclick='deleteTupel(".$row['SchadenID'].")'><i class='fa fa-trash'></i></th>";
     echo "</tr>";
   }
