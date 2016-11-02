@@ -1,4 +1,4 @@
-<?php
+ <?php
 $id = $_GET["IDE"];
 $conn = mysqli_connect("localhost","root","","maengelliste");
 if($conn->connect_error){

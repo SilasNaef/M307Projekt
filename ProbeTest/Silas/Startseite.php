@@ -76,7 +76,7 @@
           echo "<td>" . $row['Schaden'] . "</td>";
           echo "<td>" . $row['Loesung'] . "</td>";
           echo "<td><button onclick='DeleteData(".$row['id'].")' type='button' class='btn btn-danger'><i class='fa fa-trash-o'></i></button></td>" . " ";
-          echo "<td><button onclick='' type='button' class='btn btn-success'><i class='fa fa-pencil-square-o'></i></button></td>";
+          echo "<td><a href='MaengelForm.php?id=".$row['id']."' type='button' class='btn btn-success'><i class='fa fa-pencil-square-o'></i></a></td>";
         echo "</tr>";
       }
       echo "</table><div class='container'>";
