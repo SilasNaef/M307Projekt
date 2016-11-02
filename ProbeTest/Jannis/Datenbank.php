@@ -143,6 +143,9 @@ loesung VARCHAR(50) NOT NULL
       echo "<td>" . $row['schaden'] . "</td>";
       echo "<td>" . $row['loesung'] . "</td>";
       echo "<td class='text-right'>
+      <button type='button' class='btn btn-primary' onclick='editCustomer(" . $row["id"].", '" . $row["firstname"] ."', '" . $row["lastname"]."', '" . $row["datum"]."', '" . $row["schaden"]."', '" . $row["loesung"]."');'>
+      <i class='fa fa-pencil' aria-hidden='true'></i></button></td>";
+      echo "<td class='text-right'>
       <button type='button' class='btn btn-danger' onclick='deleteCustomer(" . $row["id"].");'>
       <i class='fa fa-trash-o' aria-hidden='true'></i></button></td>";
     echo "</tr>";
