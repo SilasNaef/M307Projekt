@@ -28,3 +28,15 @@ function editTupel(schadenID)
     }
   })
 }
+
+function checkTupel(date, name, schaden, loesung)
+{
+  if(empty(date) OR empty(name) OR empty(schaden) OR empty(loesung))
+  {
+    alert("Sie haben mindestens eine fehlende oder ungültige Eingabe!");
+    return true;
+  }
+  else {
+    return false;
+  }
+}

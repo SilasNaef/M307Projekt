@@ -15,6 +15,13 @@
     Schaden VARCHAR(255),
     Loesung VARCHAR(255)
     )");
+
+    $result=$conn->query("SELECT * FROM hausschaden");
+    if(mysqli_num_rows($result)==0)
+    {
+      $conn->query("INSERT INTO hausschaden (Erfassungsdatum, Antragsteller, Schaden, Loesung)
+                    VALUES ('2016-01-01', 'Max Mustermann', 'Fatal Error', 'Neustart')");
+    }
   ?>
   <meta charset="utf-8">
   <title>PHPTest</title>
@@ -34,37 +41,7 @@
 </head>
 <body>
   <div class="col-md-12">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Brand</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="test.php">Home<span class="sr-only">(current)</span></a></li>
-            <li><a href="db.php">Datenbank</a></li>
-          </ul>
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
+    <?php include 'nav.php' ?>
         <h1>Hausschaden eintragen</h1>
         <?php
         $id = @$_GET['id'];
@@ -84,7 +61,8 @@
           }
           if ($_POST)
           {
-            if (empty(@$_POST['date']) OR empty(@$_POST['Antragsteller']) OR empty(@$_POST['Schaden']) OR empty(@$_POST['Loesung'])) {
+            if (empty(@$_POST['dateact']) OR empty(@$_POST['Antragstelleract']) OR empty(@$_POST['Schadenact']) OR empty(@$_POST['Loesungact']))
+            {
               echo "<FONT COLOR='#FF0000'>Fehlende Eingabe!</FONT>";
             }
             else
@@ -96,8 +74,9 @@
               $conn->query("UPDATE hausschaden SET Erfassungsdatum='".$dateact."', Antragsteller='".$nameact."', Schaden='".$schadenact."', Loesung='".$loesungact."' WHERE schadenID=".$id);
               echo "Aktualisierung erfolgreich!";
             }
-
           }
+          $result=$conn->query("SELECT * FROM hausschaden WHERE schadenID=".$id);
+        }
           else {
             echo "<form action='test.php' method='post'>
             <input type='date' name='date' class='form-control'></br>
@@ -108,11 +87,11 @@
             </form>";
             if ($_POST)
             {
-              if (empty(@$_POST['date']) OR empty(@$_POST['Antragsteller']) OR empty(@$_POST['Schaden']) OR empty(@$_POST['Loesung'])) {
-                echo "<FONT COLOR='#FF0000'>Fehlende Eingabe!</FONT>";
-              }
-              else
+              if (checkTupel($date,$name,$schaden,$loesung))
               {
+
+              }
+              else{
                 $date=trim(htmlspecialchars(@$_POST['date']));
                 $name = trim(htmlspecialchars(@$_POST['Antragsteller']));
                 $schaden = trim(htmlspecialchars(@$_POST['Schaden']));
