@@ -56,10 +56,6 @@
 			}
 
 			//echo $_SESSION['name'];
-
-
-
-
 		}
 
 	}
