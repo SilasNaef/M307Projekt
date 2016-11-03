@@ -8,6 +8,13 @@
   $MYSQL_DB = "phpdb";
   $conn = new mysqli($MYSQL_HOST, $MYSQL_USER, $MYSQL_PW, $MYSQL_DB);
   $conn->query("CREATE DATABASE IF NOT EXISTS PHPDB");
+  $conn->query("CREATE TABLE IF NOT EXISTS hausschaden (
+    schadenID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Erfassungsdatum date,
+    Antragsteller VARCHAR(255),
+    Schaden VARCHAR(255),
+    Loesung VARCHAR(255)
+    )");
   ?>
   <meta charset="utf-8">
   <title>PHPTest</title>
@@ -60,53 +67,63 @@
         </nav>
         <h1>Hausschaden eintragen</h1>
         <?php
-          $id = @$_GET['id'];
-          if (isset($id))
+        $id = @$_GET['id'];
+        if (isset($id))
+        {
+          $link='test.php?id='.$id;
+          $result=$conn->query("SELECT * FROM hausschaden WHERE hausschaden.SchadenID=".$id);
+          while($row=$result->fetch_assoc()) /* Ausgabe der Datenbank */
           {
-            $result=$conn->query("SELECT * FROM hausschaden WHERE hausschaden.SchadenID=".$id);
-            while($row=$result->fetch_assoc()) /* Ausgabe der Datenbank */
-            {
-              echo "<form action='test.php' method='post'>
-              <input type='date' name='dateact' value='".$row['Erfassungsdatum']."' class='form-control'></br>
-              <input type='text' name='Antragstelleract' value='".$row['Antragsteller']."' placeholder='Antragsteller' class='form-control'></br>
-              <input type='text' name='Schadenact' value='".$row['Schaden']."' placeholder='Schadensbeschreibung' class='form-control'></br>
-              <input type='text' name='Loesungact' value='".$row['Loesung']."' placeholder='Lösung' class='form-control'></br>
-              <input type='submit' name='update' value='Datensatz aktualisieren' class='btn btn-primary'>
-              </form>";
+            echo "<form action=$link method='post'>
+            <input type='date' name='dateact' value='".$row['Erfassungsdatum']."' class='form-control'></br>
+            <input type='text' name='Antragstelleract' value='".$row['Antragsteller']."' placeholder='Antragsteller' class='form-control'></br>
+            <input type='text' name='Schadenact' value='".$row['Schaden']."' placeholder='Schadensbeschreibung' class='form-control'></br>
+            <input type='text' name='Loesungact' value='".$row['Loesung']."' placeholder='Lösung' class='form-control'></br>
+            <input type='submit' value='Datensatz aktualisieren' class='btn btn-primary'>
+            </form>";
+          }
+          if ($_POST)
+          {
+            if (empty(@$_POST['date']) OR empty(@$_POST['Antragsteller']) OR empty(@$_POST['Schaden']) OR empty(@$_POST['Loesung'])) {
+              echo "<FONT COLOR='#FF0000'>Fehlende Eingabe!</FONT>";
             }
-            $dateact=@$_POST['dateact'];
-            $nameact = @$_POST['Antragstelleract'];
-            $schadenact = @$_POST['Schadenact'];
-            $loesungact = @$_POST['Loesungact'];
-            $result=("UPDATE hausschaden SET (Erfassungsdatum, Antragsteller, Schaden, Loesung) VALUES ('".$dateact."','".$nameact."','".$schadenact."','".$loesungact."') WHERE schadenID=".$id);
+            else
+            {
+              $dateact= trim(htmlspecialchars(@$_POST['dateact']));
+              $nameact = trim(htmlspecialchars(@$_POST['Antragstelleract']));
+              $schadenact = trim(htmlspecialchars(@$_POST['Schadenact']));
+              $loesungact = trim(htmlspecialchars(@$_POST['Loesungact']));
+              $conn->query("UPDATE hausschaden SET Erfassungsdatum='".$dateact."', Antragsteller='".$nameact."', Schaden='".$schadenact."', Loesung='".$loesungact."' WHERE schadenID=".$id);
+              echo "Aktualisierung erfolgreich!";
+            }
+
           }
           else {
-              echo "<form action='test.php' method='post'>
-              <input type='date' name='date' class='form-control'></br>
-              <input type='text' name='Antragsteller' placeholder='Antragsteller' class='form-control'></br>
-              <input type='text' name='Schaden' placeholder='Schadensbeschreibung' class='form-control'></br>
-              <input type='text' name='Loesung' placeholder='Lösung' class='form-control'></br>
-              <input type='submit' value='Datensatz erfassen' class='btn btn-primary'>
-              </form>";
-              if ($_POST)
-              {
-                if (empty(@$_POST['date']) OR empty(@$_POST['Antragsteller']) OR empty(@$_POST['Schaden']) OR empty(@$_POST['Loesung'])) {
-                  echo "<FONT COLOR='#FF0000'>Fehlende Eingabe!</FONT>";
-                }
-                else
-                {
-                  $date=@$_POST['date'];
-                  $name = @$_POST['Antragsteller'];
-                  $schaden = @$_POST['Schaden'];
-                  $loesung = @$_POST['Loesung'];
-                  $conn->query("INSERT INTO hausschaden (Erfassungsdatum, Antragsteller, Schaden, Loesung) VALUES ('".$date."','".$name."','".$schaden."','".$loesung."')");
-                  echo "Eintrag erfolgreich!";
-                }
+            echo "<form action='test.php' method='post'>
+            <input type='date' name='date' class='form-control'></br>
+            <input type='text' name='Antragsteller' placeholder='Antragsteller' class='form-control'></br>
+            <input type='text' name='Schaden' placeholder='Schadensbeschreibung' class='form-control'></br>
+            <input type='text' name='Loesung' placeholder='Lösung' class='form-control'></br>
+            <input type='submit' value='Datensatz erfassen' class='btn btn-primary'>
+            </form>";
+            if ($_POST)
+            {
+              if (empty(@$_POST['date']) OR empty(@$_POST['Antragsteller']) OR empty(@$_POST['Schaden']) OR empty(@$_POST['Loesung'])) {
+                echo "<FONT COLOR='#FF0000'>Fehlende Eingabe!</FONT>";
               }
-              echo "</br>";
+              else
+              {
+                $date=trim(htmlspecialchars(@$_POST['date']));
+                $name = trim(htmlspecialchars(@$_POST['Antragsteller']));
+                $schaden = trim(htmlspecialchars(@$_POST['Schaden']));
+                $loesung = trim(htmlspecialchars(@$_POST['Loesung']));
+                $conn->query("INSERT INTO hausschaden (Erfassungsdatum, Antragsteller, Schaden, Loesung) VALUES ('".$date."','".$name."','".$schaden."','".$loesung."')");
+                echo "Eintrag erfolgreich!";
+              }
+            }
+            echo "</br>";
           }
           ?>
-        </form>
-      </div>
-    </body>
-    </html>
+        </div>
+      </body>
+      </html>
