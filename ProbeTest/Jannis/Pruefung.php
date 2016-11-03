@@ -90,41 +90,59 @@ function myFunction() {
 }
 </script>
 
-    <section class="container">
+<?php
+@$getid = $_GET['id'];
+if (isset($getid)) {
+  $Link = "Pruefung.php?id=".$getid."";
+  $db = mysqli_connect("localhost","root","","Haushalt");
+  $SelectQuery = mysqli_query($db,"SELECT * FROM Problem WHERE id='$getid'");
+  while ($row = mysqli_fetch_assoc($SelectQuery)) {
+    $sendVorname = $row['firstname'];
+    $sendNachname = $row['lastname'];
+    $sendDatum = $row['datum'];
+    $sendSchaden = $row['schaden'];
+    $sendLoesung = $row['loesung'];
+  }
+  @$vorname = htmlspecialchars($_POST['vorname']);
+  @$nachname = htmlspecialchars($_POST['nachname']);
+  @$datum  = htmlspecialchars($_POST['datum']);
+  @$schaden  = htmlspecialchars($_POST['schaden']);
+  @$loesung  = htmlspecialchars($_POST['loesung']);
+  if ( empty ($vorname) == False &&
+       empty ($nachname) == False &&
+       empty ($datum) == False &&
+       empty ($schaden) == false &&
+       empty ($loesung) == False){
+         echo "Änderung von Benutzer: ". $_POST['vorname'] . " wurde gespeichert";
+         $Updatesql =  mysqli_query($db, "UPDATE Problem SET firstname='$vorname', lastname='$nachname', datum='$datum', schaden='$schaden', loesung='$loesung' WHERE Problem.id='$getid'");
 
-      <div class ="row">
-        <h1>Maengelliste</h1>
-        <div class="col-md-12">
-          <form action="Pruefung.php" method="post">
-            <input type="text" name="vorname"  placeholder="Vorname" class="form-control"/>
-            <br>
-            <input type="text" name="nachname"  placeholder="Nachname" class="form-control"/>
-            <br>
-            <input type="date" name="datum" class="form-control"/>
-            <br>
-            <textarea name="schaden" placeholder="Schaden" class="form-control" rows="8"></textarea>
-            <br>
-            <textarea name="loesung" placeholder="Lösung" class="form-control" rows="8"></textarea>
-            <br>
-            <button type="submit" value="absenden" class="form-control btn
-            btn-default">Absenden</button>
-            <br>
-            <br>
-  <?php
+  }
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
+  $SelectQuery = mysqli_query($db,"SELECT * FROM Problem WHERE Problem.id='$getid'");
+  while ($row = mysqli_fetch_assoc($SelectQuery)) {
+    $sendVorname = $row['firstname'];
+    $sendNachname = $row['lastname'];
+    $sendDatum = $row['datum'];
+    $sendSchaden = $row['schaden'];
+    $sendLoesung = $row['loesung'];
+  //$InsertQuery1 = mysqli_query($db,"UPDATE MaengelTable(UserVorname, UserNachname, ErfassDatum, Schaden, Loesung) VALUES ('".$UserVorname."','".$UserNachname."','".$ErfassDatum."','".$Schaden."','".$Loesung."') WHERE id='$getid'");
+  }
+}
+else {
 
-    $conn = new mysqli($servername, $username, $password);
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $Link = "Pruefung.php";
+  $conn = new mysqli($servername, $username, $password);
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
 
-    $CreateDB =  mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS Haushalt");
-    $ConnDB = mysqli_connect($servername, $username, $password, 'Haushalt');
+  $CreateDB =  mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS Haushalt");
+  $ConnDB = mysqli_connect($servername, $username, $password, 'Haushalt');
 
-  $CreateTB = mysqli_query($ConnDB, "CREATE TABLE IF NOT EXISTS Problem (
+$CreateTB = mysqli_query($ConnDB, "CREATE TABLE IF NOT EXISTS Problem (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 firstname VARCHAR(30) NOT NULL,
 lastname VARCHAR(30) NOT NULL,
@@ -133,45 +151,63 @@ schaden VARCHAR(50) NOT NULL,
 loesung VARCHAR(50) NOT NULL
 )");
 
-  $startAbfrage = mysqli_query($ConnDB, "SELECT * FROM Problem");
+$startAbfrage = mysqli_query($ConnDB, "SELECT * FROM Problem");
 
-  if(mysqli_num_rows($startAbfrage) == 0){
-    $Eintrag1 = mysqli_query($ConnDB, "INSERT INTO Problem(firstname, lastname, datum, schaden, loesung) VALUES('Jannis', 'Thymnios', '2016-11-02', 'Wc kaputt', 'Neues WC kaufen')");
-    $Eintrag1 = mysqli_query($ConnDB, "INSERT INTO Problem(firstname, lastname, datum, schaden, loesung) VALUES('Silas', 'Näf', '2016-11-02', 'Herd kaputt', 'Neuen Herd kaufen')");
+if(mysqli_num_rows($startAbfrage) == 0){
+  $Eintrag1 = mysqli_query($ConnDB, "INSERT INTO Problem(firstname, lastname, datum, schaden, loesung) VALUES('Jannis', 'Thymnios', '2016-11-02', 'Wc kaputt', 'Neues WC kaufen')");
+  $Eintrag1 = mysqli_query($ConnDB, "INSERT INTO Problem(firstname, lastname, datum, schaden, loesung) VALUES('Silas', 'Näf', '2016-11-02', 'Herd kaputt', 'Neuen Herd kaufen')");
 
-  }
+}
 
-@$vorname = $_POST['vorname'];
-@$nachname = $_POST['nachname'];
-@$datum  = $_POST['datum'];
-@$schaden  = $_POST['schaden'];
-@$loesung  = $_POST['loesung'];
-  if ( empty ($vorname) == False &&
-       empty ($nachname) == False &&
-       empty ($datum) == False &&
-       empty ($schaden) == false &&
-       empty ($loesung) == False){
-         echo "Eintrag von Benutzer: ". $_POST['vorname'] . " wurde gespeichert";
-         $sql =  mysqli_query($ConnDB, "INSERT INTO Problem(firstname, lastname, datum, schaden, loesung) VALUES('$vorname', '$nachname', '$datum', '$schaden', '$loesung')");
+@$vorname = htmlspecialchars($_POST['vorname']);
+@$nachname = htmlspecialchars($_POST['nachname']);
+@$datum  = htmlspecialchars($_POST['datum']);
+@$schaden  = htmlspecialchars($_POST['schaden']);
+@$loesung  = htmlspecialchars($_POST['loesung']);
+if ( empty ($vorname) == False &&
+     empty ($nachname) == False &&
+     empty ($datum) == False &&
+     empty ($schaden) == false &&
+     empty ($loesung) == False){
+       echo "Eintrag von Benutzer: ". $_POST['vorname'] . " wurde gespeichert";
+       $sql =  mysqli_query($ConnDB, "INSERT INTO Problem(firstname, lastname, datum, schaden, loesung) VALUES('$vorname', '$nachname', '$datum', '$schaden', '$loesung')");
 
-  }
-  else{
-    //if (@$_POST['vorname'] != null) {
-        echo "Bitte geben Sie alle Daten ein.";
-
-  }
+}
 
 
 
-  mysqli_close($ConnDB);
-  mysqli_close($conn);
 
-      //$sql =  mysql_query("CREATE DATABASE TestJannis IF NOT EXISTS");
+mysqli_close($ConnDB);
+mysqli_close($conn);
 
-      //$conn = mysql_connect($MYSQL_HOST, $MYSQL_USER, $MYSQL_PW);      /* verbindet zu MySQL an sich */
-      //mysql_select_db($MYSQL_DB, $conn)     /* verbindet zu der gewählten Datenbank auf dem Server */
-    //mysql_close($conn);
-  ?>
+    //$sql =  mysql_query("CREATE DATABASE TestJannis IF NOT EXISTS");
+
+    //$conn = mysql_connect($MYSQL_HOST, $MYSQL_USER, $MYSQL_PW);      /* verbindet zu MySQL an sich */
+    //mysql_select_db($MYSQL_DB, $conn)     /* verbindet zu der gewählten Datenbank auf dem Server */
+}  //mysql_close($conn);
+?>
+
+
+    <section class="container">
+
+      <div class ="row">
+        <h1>Maengelliste</h1>
+        <div class="col-md-12">
+          <form action=<?=@$Link?> method="post">
+            <input type="text" name="vorname" value="<?=@$sendVorname?>"  placeholder="Vorname" class="form-control"/>
+            <br>
+            <input type="text" name="nachname" value="<?=@$sendNachname?>"  placeholder="Nachname" class="form-control"/>
+            <br>
+            <input type="date" name="datum" value="<?=@$sendDatum?>"  class="form-control"/>
+            <br>
+            <textarea name="schaden"  placeholder="Schaden" class="form-control" rows="8"><?=@$sendSchaden?></textarea>
+            <br>
+            <textarea name="loesung"  placeholder="Lösung" class="form-control" rows="8"><?=@$sendLoesung?></textarea>
+            <br>
+            <button type="submit" value="absenden" class="form-control btn
+            btn-default">Absenden</button>
+            <br>
+            <br>
 
 </body>
 </html>

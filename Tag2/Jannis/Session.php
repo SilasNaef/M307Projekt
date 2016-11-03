@@ -22,7 +22,7 @@
       <?php
       session_start();
       session_cache_limiter(3600);
-      $expectedUsername = "SilasNaef";
+      $expectedUsername = "Jannis";
       $expectedPasswort = "Adminadmin1";
       if(@$_POST['vorname'] == @$expectedUsername && @$_POST['pw1'] == @$expectedPasswort) {
         @$_SESSION['eingeloggt'] = true;
